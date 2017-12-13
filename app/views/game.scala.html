@@ -1,0 +1,30 @@
+@(controller:de.htwg.mps.minesweeper.controller.GameController)
+
+@size= @{controller.game.grid().getSize}
+
+@main("Welcome to Minesweeper") {
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+        </head>
+        <body>
+            <p>Bombs to be found: @controller.game.grid().bombs</p>
+            <div class="gamecontainer">
+                <div class="game">
+                @for(col <- 0 until size._1) {
+
+                    @for(row <- 0 until size._2) {
+
+                         <span id="@col+@row">@controller.game.grid().get(col,row)</span>
+
+                    }
+                    <br>
+
+                }
+                </div>
+            </div>
+        </body>
+    </html>
+}

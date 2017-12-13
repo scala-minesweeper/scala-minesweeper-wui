@@ -2,9 +2,9 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 
+import de.htwg.mps.minesweeper.controller.GameControllerExport
 import play.api.mvc.{AbstractController, ControllerComponents}
 
-import de.htwg.mps.minesweeper.controller.GameControllerExport
 
 @Singleton
 class GameController @Inject()(cc: ControllerComponents) extends AbstractController(cc){
@@ -12,9 +12,9 @@ class GameController @Inject()(cc: ControllerComponents) extends AbstractControl
   def index = Action {
     val gameController = GameControllerExport.controller
 
-    gameController.restartGame(10,10,30)
-    println(gameController.game)
-    Ok(gameController.game.grid().toString)
+    gameController.restartGame(10,5,30)
+    println(gameController.game.grid())
+    Ok(views.html.game(gameController))
   }
 
 }
