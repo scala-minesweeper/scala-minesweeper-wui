@@ -20,6 +20,7 @@ class GameController @Inject()(cc: ControllerComponents) extends AbstractControl
   def openField(col:Int, row:Int) = Action {
     println("open"+row+","+col)
     gameController.openField(col,row)
+    println(gameController.game.grid())
     Ok(views.html.game(gameController))
   }
 
