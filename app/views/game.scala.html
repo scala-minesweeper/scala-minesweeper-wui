@@ -11,13 +11,14 @@
         </head>
         <body>
             <p>Bombs to be found: @controller.game.grid().bombs</p>
+            <a href="/game" style="text-decoration: none">Restart Game</a>
             <div class="gamecontainer">
                 <div class="game">
                 @for(col <- 0 until size._1) {
 
                     @for(row <- 0 until size._2) {
 
-                         <span id="@col+@row">@controller.game.grid().get(col,row)</span>
+                        <span id="@col+@row"><a href="/game/@col/@row" style="text-decoration: none">@controller.game.grid().get(col,row)</a></span>
 
                     }
                     <br>

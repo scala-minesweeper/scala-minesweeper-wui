@@ -9,11 +9,17 @@ import play.api.mvc.{AbstractController, ControllerComponents}
 @Singleton
 class GameController @Inject()(cc: ControllerComponents) extends AbstractController(cc){
 
-  def index = Action {
-    val gameController = GameControllerExport.controller
+  val gameController = GameControllerExport.controller
 
-    gameController.restartGame(10,5,30)
+  def game = Action {
+    gameController.restartGame(10,10,30)
     println(gameController.game.grid())
+    Ok(views.html.game(gameController))
+  }
+
+  def openField(col:Int, row:Int) = Action {
+    println("open"+row+","+col)
+    gameController.openField(col,row)
     Ok(views.html.game(gameController))
   }
 
