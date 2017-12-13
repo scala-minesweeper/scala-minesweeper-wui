@@ -17,27 +17,27 @@
                 @for(col <- 0 until size._1) {
 
                     @for(row <- 0 until size._2) {
-                        <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
-                        @*<!--@controller.game.grid().get(col, row).get.toString() match {*@
-                            @*case "0" => {*@
-                                @*<span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>*@
-                            @*}*@
-                            @*case "1" => {*@
-                                @*<span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>*@
-                            @*}*@
-                            @*case "2" => {*@
-                                @*<span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>*@
-                            @*}*@
-                            @*case "3" => {*@
-                                @*<span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>*@
-                            @*}*@
-                            @*case "+" => {*@
-                                @*<span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>*@
-                            @*}*@
-                            @*case "~" => {*@
-                                @*<span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">&#9634</a></span>*@
-                            @*}*@
-                        @*}-->*@
+                        @controller.game.grid().get(col, row).get.toString() match {
+                            case "0" => {
+                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
+                            }
+                            case "1" => {
+                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
+                            }
+                            case "2" => {
+                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
+                            }
+                            case "3" => {
+                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
+                            }
+                            case "~" => {
+                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">&#9634</a></span>
+                            }
+                            case _ => {
+                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
+                            }
+
+                        }
                     }
 
 
