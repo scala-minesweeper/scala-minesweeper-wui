@@ -25,7 +25,12 @@ class GameController @Inject()(cc: ControllerComponents) extends AbstractControl
   }
 
   def newGame(cols:Int, rows:Int ,bombs:Int) = Action {
-    gameController.restartGame(cols,rows,bombs);
+    gameController.restartGame(cols,rows,bombs)
+    Ok(views.html.game(gameController))
+  }
+
+  def toggleState(col:Int, row:Int) = Action {
+    gameController.toggleMarkField(col, row)
     Ok(views.html.game(gameController))
   }
 

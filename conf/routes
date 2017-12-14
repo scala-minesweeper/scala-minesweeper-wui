@@ -12,6 +12,7 @@ GET     /message                    controllers.AsyncController.message
 GET     /game                       controllers.GameController.game
 GET     /game/:col/:row             controllers.GameController.openField(col:Int, row:Int)
 GET     /newGame/:cols/:rows/:bombs controllers.GameController.newGame(cols:Int, rows:Int, bombs:Int)
+GET     /toggleField/:col/:row      controllers.GameController.toggleState(col:Int, row:Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
