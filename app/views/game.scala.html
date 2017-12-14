@@ -13,6 +13,7 @@
         <script src="@routes.Assets.versioned("javascripts/jquery-3.2.1.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.versioned("javascripts/game.js")" type="text/javascript"></script>
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/game.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/fontawesome-all.min.css")">
         <body>
             <p>Bombs to be found: @bombs</p>
             <input class="minesweeperButton" type="button" id="restartGame" value="Restart Game"/>
@@ -26,10 +27,19 @@
                     @for(row <- 0 until size._2) {
                         @controller.game.grid().get(col, row).get.toString() match {
                             case "~" => {
-                                <input id="@col|@row" class="minesweeperField hidden" type="button" value="@controller.game.grid().get(col, row)"/>
+                                <button id="@col|@row" class="minesweeperField hidden">@controller.game.grid().get(col, row)</button>
+                            }
+                            case "+" => {
+                                <button id="@col|@row" class="minesweeperField"><img src="@routes.Assets.versioned("images/mine.ico")" height="28"/></button>
+                            }
+                            case "?" => {
+                                <button id="@col|@row" class="minesweeperField"><img src="@routes.Assets.versioned("images/questionmark.png")" height="28"/></button>
+                            }
+                            case "#" => {
+                                <button id="@col|@row" class="minesweeperField"><img src="@routes.Assets.versioned("images/flag.ico")" height="28"/></button>
                             }
                             case _ => {
-                                <input id="@col|@row" class="minesweeperField" type="button" value="@controller.game.grid().get(col, row)"/>
+                                <button id="@col|@row" class="minesweeperField">@controller.game.grid().get(col, row)</button>
                             }
 
                         }
