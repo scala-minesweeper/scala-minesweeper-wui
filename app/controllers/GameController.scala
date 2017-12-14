@@ -24,6 +24,11 @@ class GameController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(views.html.game(gameController))
   }
 
+  def newGame(cols:Int, rows:Int ,bombs:Int) = Action {
+    gameController.restartGame(cols,rows,bombs);
+    Ok(views.html.game(gameController))
+  }
+
 }
 
 

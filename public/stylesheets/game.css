@@ -1,0 +1,39 @@
+body {
+    background: #d5e2ea;
+}
+
+.minesweeperField {
+    border: 1px outset #e6e8ea;
+    background-color: #009B91;
+    height:50px;
+    width:50px;
+    cursor:pointer;
+}
+
+.minesweeperButton {
+    background-color: #009B91;
+    height:50px;
+    width:250px;
+}
+
+.hidden {
+    color: #009B91;
+}
+
+.minesweeperField.hidden:hover {
+    color: #d5e2ea;
+}
+
+.minesweeperField:hover {
+    background-color: #d5e2ea;
+    color:white;
+
+}
+
+a {
+    text-decoration: none
+}
+
+p, .minesweeperField, .minesweeperButton {
+    font-size: 35px;
+}

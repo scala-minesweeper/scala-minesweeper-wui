@@ -1,6 +1,7 @@
 @(controller:de.htwg.mps.minesweeper.controller.GameController)
 
 @size= @{controller.game.grid().getSize}
+@bombs = @{controller.game.grid().bombs}
 
 @main("Welcome to Minesweeper") {
 <!DOCTYPE html>
@@ -9,32 +10,26 @@
             <meta charset="UTF-8">
             <title>Title</title>
         </head>
+        <script src="@routes.Assets.versioned("javascripts/jquery-3.2.1.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/game.js")" type="text/javascript"></script>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/game.css")">
         <body>
-            <p>Bombs to be found: @controller.game.grid().bombs</p>
-            <a href="/game"><p>Restart Game</p></a>
+            <p>Bombs to be found: @bombs</p>
+            <input class="minesweeperButton" type="button" id="restartGame" value="Restart Game"/>
+            <p>Rows: <input type="number" id="inputRows" min="1" value="@size._1"></p>
+            <p>Cols: <input type="number" id="inputCols" min="1" value="@size._2"></p>
+            <p>Bombs: <input type="number" id="inputBombs" min="1" value="@bombs"></p>
             <div class="gamecontainer">
                 <div class="game">
                 @for(col <- 0 until size._1) {
 
                     @for(row <- 0 until size._2) {
                         @controller.game.grid().get(col, row).get.toString() match {
-                            case "0" => {
-                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
-                            }
-                            case "1" => {
-                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
-                            }
-                            case "2" => {
-                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
-                            }
-                            case "3" => {
-                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
-                            }
                             case "~" => {
-                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">&#9634</a></span>
+                                <input id="@col|@row" class="minesweeperField hidden" type="button" value="@controller.game.grid().get(col, row)"/>
                             }
                             case _ => {
-                                <span class="minesweeperField" id="@col+@row"><a href="/game/@col/@row">@controller.game.grid().get(col, row)</a></span>
+                                <input id="@col|@row" class="minesweeperField" type="button" value="@controller.game.grid().get(col, row)"/>
                             }
 
                         }
