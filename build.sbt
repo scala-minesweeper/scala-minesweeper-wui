@@ -13,4 +13,4 @@ libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 libraryDependencies += "com.h2database" % "h2" % "1.4.196"
 libraryDependencies += "org.webjars" % "jquery" % "3.2.1"
-libraryDependencies += "scala_minesweeper" % "scala_minesweeper_2.12" % "0.1"
+libraryDependencies += "scala-minesweeper-core" % "scala-minesweeper-core_2.12" % "0.1"
