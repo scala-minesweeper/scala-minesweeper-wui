@@ -1,33 +1,5 @@
-body {
-    background: #d5e2ea;
-}
-
-.minesweeperField {
-    border: 1px outset #e6e8ea;
-    background-color: #009B91;
-    height:50px;
-    width:50px;
-    cursor:pointer;
-}
-
-.minesweeperButton {
-    background-color: #009B91;
-    height:50px;
-    width:250px;
-}
-
-.hidden {
-    color: #009B91;
-}
-
-.minesweeperField.hidden:hover {
-    color: #d5e2ea;
-}
-
-.minesweeperField:hover {
-    background-color: #d5e2ea;
-    color:white;
-
+* {
+    box-sizing: border-box;
 }
 
 a {
@@ -36,4 +8,36 @@ a {
 
 p, .minesweeperField, .minesweeperButton {
     font-size: 32px;
+}
+
+body {
+    background: #ffffff;
+}
+
+.minesweeperField {
+    background-color: #dddddd;
+    height:50px;
+    width:50px;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 6px 3px;
+    padding: 5px;
+    text-align: center;
+}
+.minesweeperField.hidden {
+    cursor:pointer;
+    background-color: #b1b1b1;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16), 0 0 2px 2px rgba(0,0,0,0.08);
+}
+
+.minesweeperField.hidden:hover {
+    background-color: #c1c1c1;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.16), 0 0 3px 3px rgba(0,0,0,0.08);
+}
+
+
+.minesweeperButton {
+    background-color: #b1b1b1;
+    height:50px;
+    width:250px;
 }

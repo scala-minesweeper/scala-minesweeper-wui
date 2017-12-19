@@ -1,7 +1,11 @@
-@(controller:de.htwg.mps.minesweeper.controller.GameController)
+@(controller: de.htwg.mps.minesweeper.controller.GameController)
 
-@size= @{controller.game.grid().getSize}
-@bombs = @{controller.game.grid().bombs}
+@size = @{
+    controller.game.grid().getSize
+}
+@bombs = @{
+    controller.game.grid().bombs
+}
 
 @main("Welcome to Minesweeper") {
 <!DOCTYPE html>
@@ -23,28 +27,28 @@
             <div class="gamecontainer">
                 <div class="game">
                 @for(col <- 0 until size._1) {
-
+                    <div>
                     @for(row <- 0 until size._2) {
                         @controller.game.grid().get(col, row).get.toString() match {
                             case "~" => {
-                                <button id="@col|@row" class="minesweeperField hidden">@controller.game.grid().get(col, row)</button>
+                                <div id="@col|@row" class="minesweeperField hidden">&nbsp;</div>
                             }
                             case "+" => {
-                                <button id="@col|@row" class="minesweeperField"><img src="@routes.Assets.versioned("images/mine.ico")" height="28"/></button>
+                                <div id="@col|@row" class="minesweeperField"><img src="@routes.Assets.versioned("images/mine.ico")" height="28"/></div>
                             }
                             case "?" => {
-                                <button id="@col|@row" class="minesweeperField"><img src="@routes.Assets.versioned("images/questionmark.png")" height="28"/></button>
+                                <div id="@col|@row" class="minesweeperField hidden"><img src="@routes.Assets.versioned("images/questionmark.png")" height="28"/></div>
                             }
                             case "#" => {
-                                <button id="@col|@row" class="minesweeperField"><img src="@routes.Assets.versioned("images/flag.ico")" height="28"/></button>
+                                <div id="@col|@row" class="minesweeperField hidden"><img src="@routes.Assets.versioned("images/flag.ico")" height="28"/></div>
                             }
                             case _ => {
-                                <button id="@col|@row" class="minesweeperField">@controller.game.grid().get(col, row)</button>
+                                <div id="@col|@row" class="minesweeperField">@controller.game.grid().get(col, row)</div>
                             }
 
                         }
                     }
-                    <br>
+                    </div>
                 }
                 </div>
             </div>
