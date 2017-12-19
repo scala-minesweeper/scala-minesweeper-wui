@@ -1,12 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow|Fira+Mono');
+
 * {
     box-sizing: border-box;
+    font-family: 'Barlow', sans-serif;
 }
 
 a {
     text-decoration: none
 }
 
-p, .minesweeperField, .minesweeperButton {
+p,
+input,
+.minesweeperButton {
+    font-size: 20px;
+}
+
+.minesweeperField {
     font-size: 32px;
 }
 
@@ -15,6 +24,7 @@ body {
 }
 
 .minesweeperField {
+    font-family: 'Fira Mono', monospace;
     background-color: #dddddd;
     height:50px;
     width:50px;

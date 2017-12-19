@@ -19,11 +19,12 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/game.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/fontawesome-all.min.css")">
         <body>
-            <p>Bombs to be found: @bombs</p>
             <input class="minesweeperButton" type="button" id="restartGame" value="Restart Game"/>
-            <p>Rows: <input type="number" id="inputRows" min="1" value="@size._1"></p>
-            <p>Cols: <input type="number" id="inputCols" min="1" value="@size._2"></p>
-            <p>Bombs: <input type="number" id="inputBombs" min="1" value="@bombs"></p>
+            <p><label for="inputRows">Rows:</label><input type="number" id="inputRows" min="1" value="@size._1"></p>
+            <p><label for="inputCols">Cols:</label> <input type="number" id="inputCols" min="1" value="@size._2"></p>
+            <p><label for="inputBombs">Bombs:</label> <input type="number" id="inputBombs" min="1" value="@bombs"></p>
+            <br/>
+            <p>Bombs to be found: @bombs</p>
             <div class="gamecontainer">
                 <div class="game">
                 @for(col <- 0 until size._1) {
