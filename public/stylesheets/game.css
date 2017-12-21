@@ -15,6 +15,30 @@ input,
     font-size: 20px;
 }
 
+input {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #dddddd;
+    display: block;
+    width: 100%;
+}
+
+form {
+    width: 100%;
+    max-width: 300px;
+}
+
+.col-3 {
+    width: 25%;
+}
+.col-9 {
+    width: 75%;
+}
+.col-3, .col-9 {
+    float: left;
+}
+
 .minesweeperField {
     font-size: 32px;
 }
