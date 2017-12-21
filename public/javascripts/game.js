@@ -19,7 +19,7 @@ $(function() {
         var rows = $("#inputRows").val();
         var bombs = $("#inputBombs").val();
         if(cols > 0 && rows > 0){
-            window.location.href = "/newGame/"+cols+"/"+rows+"/"+bombs;
+            window.location.href = "/newGame/"+rows+"/"+cols+"/"+bombs;
         } else {
             window.location.href = "/newGame/10/10/10";
         }
