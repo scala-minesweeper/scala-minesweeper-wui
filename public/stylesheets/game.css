@@ -50,19 +50,21 @@ form {
     max-width: 300px;
 }
 
-.col-3 {
-    width: 25%;
-}
-
-.col-9 {
-    width: 75%;
-}
-
-.col-3, .col-9 {
-    float: left;
-    padding: 10px;
+.container {
+    display: flex;
     height: 100%;
-    overflow-y: auto;
+}
+
+.control-sidebar {
+    max-width: 200px;
+    min-width: 200px;
+    padding: 10px;
+    box-shadow: 0 0 6px 0px rgba(0,0,0,0.5);
+}
+
+.game-frame {
+    padding: 10px 20px 10px 10px;
+    overflow: auto;
 }
 
 .grid-field {
@@ -90,11 +92,6 @@ form {
 
 .grid-field > img {
     height: 37px;
-}
-
-.game-container {
-    width: 100%;
-    overflow-x: auto;
 }
 
 .grid-row {

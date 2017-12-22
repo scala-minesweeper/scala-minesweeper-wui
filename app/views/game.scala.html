@@ -19,7 +19,8 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/game.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/fontawesome-all.min.css")">
         <body>
-            <div class="col-3">
+            <div class="container">
+            <div class="control-sidebar">
                 <form>
                     <p>
                         <label for="inputRows">Rows:</label>
@@ -36,7 +37,7 @@
                     <input class="minesweeperButton" type="button" id="restartGame" value="Restart Game"/>
                 </form>
             </div>
-            <div class="col-9">
+            <div class="game-frame">
                 <p>Bombs to be found: @bombs</p>
                 <div class="game-container">
                     <div class="game">
@@ -68,6 +69,7 @@
                     }
                     </div>
                 </div>
+            </div>
             </div>
         </body>
     </html>
