@@ -1,18 +1,20 @@
 $(function() {
-    $(".grid-field").on("click", function () {
+    var gridField = $(".grid-field");
+
+    gridField.on("click", function () {
         var colrow = $(this).attr('id').split("|");
         var col = colrow[0];
         var row = colrow[1];
         window.location.href = "/game/"+col+"/"+row;
-    })
+    });
 
-    $(".grid-field").on("contextmenu", function () {
+    gridField.on("contextmenu", function () {
         var colrow = $(this).attr('id').split("|");
         var col = colrow[0];
         var row = colrow[1];
         window.location.href = "/toggleField/"+col+"/"+row;
         return false;
-    })
+    });
 
     $("#restartGame").on("click", function() {
         var cols = $("#inputCols").val();
