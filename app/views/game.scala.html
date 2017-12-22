@@ -56,6 +56,9 @@
                                 case "#" => {
                                     <div id="@col|@row" class="minesweeperField hidden"><img src="@routes.Assets.versioned("images/flag.ico")" height="28"/></div>
                                 }
+                                case "0" => {
+                                    <div id="@col|@row" class="minesweeperField">&nbsp;</div>
+                                }
                                 case _ => {
                                     <div id="@col|@row" class="minesweeperField">@controller.game.grid().get(col, row)</div>
                                 }
