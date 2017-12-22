@@ -38,29 +38,29 @@
             </div>
             <div class="col-9">
                 <p>Bombs to be found: @bombs</p>
-                <div class="gamecontainer">
+                <div class="game-container">
                     <div class="game">
                     @for(col <- 0 until size._1) {
-                        <div>
+                        <div class="grid-row">
                         @for(row <- 0 until size._2) {
                             @controller.game.grid().get(col, row).get.toString() match {
                                 case "~" => {
-                                    <div id="@col|@row" class="minesweeperField hidden">&nbsp;</div>
+                                    <div id="@col|@row" class="grid-field hidden">&nbsp;</div>
                                 }
                                 case "+" => {
-                                    <div id="@col|@row" class="minesweeperField"><img src="@routes.Assets.versioned("images/mine.ico")" height="28"/></div>
+                                    <div id="@col|@row" class="grid-field"><img src="@routes.Assets.versioned("images/mine.ico")" height="28"/></div>
                                 }
                                 case "?" => {
-                                    <div id="@col|@row" class="minesweeperField hidden"><img src="@routes.Assets.versioned("images/questionmark.png")" height="28"/></div>
+                                    <div id="@col|@row" class="grid-field hidden"><img src="@routes.Assets.versioned("images/questionmark.png")" height="28"/></div>
                                 }
                                 case "#" => {
-                                    <div id="@col|@row" class="minesweeperField hidden"><img src="@routes.Assets.versioned("images/flag.ico")" height="28"/></div>
+                                    <div id="@col|@row" class="grid-field hidden"><img src="@routes.Assets.versioned("images/flag.ico")" height="28"/></div>
                                 }
                                 case "0" => {
-                                    <div id="@col|@row" class="minesweeperField">&nbsp;</div>
+                                    <div id="@col|@row" class="grid-field">&nbsp;</div>
                                 }
                                 case _ => {
-                                    <div id="@col|@row" class="minesweeperField">@controller.game.grid().get(col, row)</div>
+                                    <div id="@col|@row" class="grid-field">@controller.game.grid().get(col, row)</div>
                                 }
                             }
                         }

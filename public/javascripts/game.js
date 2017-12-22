@@ -1,12 +1,12 @@
 $(function() {
-    $(".minesweeperField").on("click", function () {
+    $(".grid-field").on("click", function () {
         var colrow = $(this).attr('id').split("|");
         var col = colrow[0];
         var row = colrow[1];
         window.location.href = "/game/"+col+"/"+row;
     })
 
-    $(".minesweeperField").on("contextmenu", function () {
+    $(".grid-field").on("contextmenu", function () {
         var colrow = $(this).attr('id').split("|");
         var col = colrow[0];
         var row = colrow[1];

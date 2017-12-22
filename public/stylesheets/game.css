@@ -5,14 +5,34 @@
     font-family: 'Barlow', sans-serif;
 }
 
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    background: #ffffff;
+}
+
 a {
     text-decoration: none
 }
 
 p,
-input,
-.minesweeperButton {
-    font-size: 20px;
+label,
+input {
+    font-size: 18px;
+}
+
+p {
+    margin: 0;
+}
+
+label {
+    margin-bottom: 5px;
+    display: block;
 }
 
 input {
@@ -22,6 +42,7 @@ input {
     background-color: #dddddd;
     display: block;
     width: 100%;
+    margin: 0 0 15px 0;
 }
 
 form {
@@ -32,46 +53,58 @@ form {
 .col-3 {
     width: 25%;
 }
+
 .col-9 {
     width: 75%;
 }
+
 .col-3, .col-9 {
     float: left;
+    padding: 10px;
+    height: 100%;
+    overflow-y: auto;
 }
 
-.minesweeperField {
+.grid-field {
     font-size: 32px;
-}
-
-body {
-    background: #ffffff;
-}
-
-.minesweeperField {
     font-family: 'Fira Mono', monospace;
     background-color: #dddddd;
-    height:50px;
-    width:50px;
+    height: 50px;
+    width: 50px;
     border-radius: 3px;
-    display: inline-block;
+    min-height: 50px;
+    min-width: 50px;
+    flex-shrink: 1;
+    flex-basis: auto;
+    flex-grow: 1;
     margin: 6px 3px;
     padding: 5px;
     text-align: center;
 }
-.minesweeperField.hidden {
-    cursor:pointer;
+
+.grid-field.hidden {
+    cursor: pointer;
     background-color: #b1b1b1;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16), 0 0 2px 2px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 0 2px 2px rgba(0, 0, 0, 0.08);
 }
 
-.minesweeperField.hidden:hover {
+.grid-field > img {
+    height: 37px;
+}
+
+.game-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.grid-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.grid-field.hidden:hover {
     background-color: #c1c1c1;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.16), 0 0 3px 3px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16), 0 0 3px 3px rgba(0, 0, 0, 0.08);
 }
 
-
-.minesweeperButton {
-    background-color: #b1b1b1;
-    height:50px;
-    width:250px;
-}
