@@ -13,6 +13,7 @@ GET     /game                       controllers.GameWebController.game
 GET     /game/:col/:row             controllers.GameWebController.openField(col:Int, row:Int)
 GET     /newGame/:cols/:rows/:bombs controllers.GameWebController.newGame(cols:Int, rows:Int, bombs:Int)
 GET     /toggleField/:col/:row      controllers.GameWebController.toggleState(col:Int, row:Int)
+GET     /socket                     controllers.GameWebController.socket
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
