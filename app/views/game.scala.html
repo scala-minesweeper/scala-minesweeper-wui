@@ -1,10 +1,12 @@
-@(controller: de.htwg.mps.minesweeper.controller.GameController)
+@import de.htwg.mps.minesweeper.model.grid.Grid
+
+@(grid: Grid)
 
 @size = @{
-    controller.game.grid().getSize
+    grid.getSize
 }
 @bombs = @{
-    controller.game.grid().bombs
+    grid.bombs
 }
 
 @main("Minesweeper Game") {
@@ -33,7 +35,7 @@
                 @for(col <- 0 until size._1) {
                     <div class="grid-row">
                     @for(row <- 0 until size._2) {
-                        @controller.game.grid().get(col, row).get.toString() match {
+                        @grid.get(col, row).get.toString() match {
                             case "~" => {
                                 <div id="@col|@row" class="grid-field hidden">&nbsp;</div>
                             }
@@ -50,7 +52,7 @@
                                 <div id="@col|@row" class="grid-field">&nbsp;</div>
                             }
                             case _ => {
-                                <div id="@col|@row" class="grid-field">@controller.game.grid().get(col, row)</div>
+                                <div id="@col|@row" class="grid-field">@grid.get(col, row)</div>
                             }
                         }
                     }
