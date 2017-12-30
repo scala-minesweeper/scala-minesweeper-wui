@@ -1,18 +1,27 @@
 $(function() {
+    var socket = new WebSocket("ws://localhost:9000/socket");
+    socket.onopen = function(){
+        console.log('Connected to 127.0.0.1:9000!');
+    };
+    socket.onmessage = function (event) {
+        console.log(event.data);
+        window.location.href = "/game";
+    };
+
     var gridField = $(".grid-field");
 
     gridField.on("click", function () {
         var colrow = $(this).attr('id').split("|");
         var col = colrow[0];
         var row = colrow[1];
-        window.location.href = "/game/"+col+"/"+row;
+        $.get("/game/"+col+"/"+row);
     });
 
     gridField.on("contextmenu", function () {
         var colrow = $(this).attr('id').split("|");
         var col = colrow[0];
         var row = colrow[1];
-        window.location.href = "/toggleField/"+col+"/"+row;
+        $.get("/toggleField/"+col+"/"+row);
         return false;
     });
 
@@ -21,9 +30,9 @@ $(function() {
         var rows = $("#inputRows").val();
         var bombs = $("#inputBombs").val();
         if(cols > 0 && rows > 0){
-            window.location.href = "/newGame/"+rows+"/"+cols+"/"+bombs;
+            $.get("/newGame/"+rows+"/"+cols+"/"+bombs);
         } else {
-            window.location.href = "/newGame/10/10/10";
+            $.get("/newGame/10/10/10");
         }
 
     })
