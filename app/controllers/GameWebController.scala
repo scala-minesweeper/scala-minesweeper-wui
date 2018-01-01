@@ -5,7 +5,6 @@ import javax.inject.{Inject, Singleton}
 import akka.actor.{ActorRef, ActorSelection, ActorSystem}
 import akka.stream.Materializer
 import de.htwg.mps.minesweeper.controller._
-import de.htwg.mps.minesweeper.model.grid.{Grid, MinesweeperGrid}
 import play.api.libs.json.JsValue
 import play.api.libs.streams.ActorFlow
 import play.api.mvc._
@@ -17,7 +16,6 @@ import scala.concurrent.duration._
 class GameWebController @Inject()(implicit actorSystem: ActorSystem, cc: ControllerComponents, materializer: Materializer)
   extends AbstractController(cc) {
 
-  var grid: Grid = MinesweeperGrid(1, 1, 1)
   private val publishController: ActorSelection =
     actorSystem.actorSelection("akka.tcp://minesweeper@127.0.0.1:5555/user/publisher")
   private val gameController: ActorSelection =
