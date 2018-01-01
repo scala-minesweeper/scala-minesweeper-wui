@@ -67,10 +67,17 @@ form {
 }
 
 .control-sidebar {
+    display: flex;
+    flex-direction: column;
     max-width: 200px;
     min-width: 200px;
     padding: 10px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+}
+
+.player-info {
+    flex-grow: 1;
+    overflow: hidden;
 }
 
 .game-frame {
