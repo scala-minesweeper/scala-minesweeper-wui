@@ -20,10 +20,21 @@ a {
     text-decoration: none
 }
 
+table {
+    width: 100%;
+    text-align: left;
+    border: none;
+}
+
 p,
 label,
 input {
     font-size: 18px;
+}
+
+h2 {
+    font-weight: 400;
+    margin-top: 40px;
 }
 
 p {
@@ -59,7 +70,7 @@ form {
     max-width: 200px;
     min-width: 200px;
     padding: 10px;
-    box-shadow: 0 0 6px 0px rgba(0,0,0,0.5);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
 }
 
 .game-frame {
