@@ -1,9 +1,8 @@
 @import de.htwg.mps.minesweeper.model.grid.Grid
 @(grid: Grid)
 @size = @{grid.getSize}
-@bombs = @{grid.bombs}
 
-<p>Bombs to be found: @bombs</p>
+<p>Bombs to be found: @grid.missingBombs</p>
 <div class="game-container">
     <div class="game">
     @for(col <- 0 until size._1) {
