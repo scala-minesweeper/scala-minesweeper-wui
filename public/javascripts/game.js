@@ -16,10 +16,12 @@ $(function () {
     });
 
     var eventHandlers = {
-        "FieldChanged": renderGrid,
-        "GridChanged": renderGrid,
-        "GameStart": renderGrid,
-        "GameStatus": renderGrid,
+        "FieldUpdate": renderGrid,
+        "GridUpdate": renderGrid,
+        "GameStart": renderStatus,
+        "GameWon": renderStatus,
+        "GameLost": renderStatus,
+        "GameUpdate": renderStatus,
         "PlayerUpdate": renderPlayer
     };
 
@@ -43,8 +45,33 @@ $(function () {
         });
     }
 
+    function renderStatus(event) {
+        var status = $(".game-status");
+        var value = event.value;
+        status.removeClass("win lost running");
+        status.empty();
+        if (value.running) {
+            status.addClass("running");
+            status.text("Game is running!");
+            return;
+        }
+        var result = value.gameResult;
+        if (!result) {
+            return;
+        }
+        if (result.win) {
+            status.addClass("win")
+                .append($("<b>").text("You win the game!"))
+                .append($("<span>").text("Score: " + result.score + ""));
+        } else {
+            status.addClass("lost")
+                .append($("<b>").text("You lost the game!"))
+                .append($("<span>").text("Score: " + result.score + ""));
+        }
+    }
+
     function renderGrid(event) {
-        $("#game-frame").html(event.value);
+        $("#game-grid").html(event.value);
 
         var gridField = $(".grid-field");
 
