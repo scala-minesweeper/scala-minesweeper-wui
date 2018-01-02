@@ -2,18 +2,11 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
-# An example controller showing how to use dependency injection
-GET     /count                      controllers.CountController.count
-# An example controller showing how to write asynchronous code
-GET     /message                    controllers.AsyncController.message
-
-GET     /game                       controllers.GameWebController.game
-GET     /game/:col/:row             controllers.GameWebController.openField(col:Int, row:Int)
-GET     /newGame/:cols/:rows/:bombs controllers.GameWebController.newGame(cols:Int, rows:Int, bombs:Int)
-GET     /toggleField/:col/:row      controllers.GameWebController.toggleState(col:Int, row:Int)
-GET     /socket                     controllers.GameWebController.socket
+GET        /                                  controllers.GameWebController.game
+GET        /game/:col/:row                    controllers.GameWebController.openField(col:Int, row:Int)
+GET        /newGame/:cols/:rows/:bombs        controllers.GameWebController.newGame(cols:Int, rows:Int, bombs:Int)
+GET        /toggleField/:col/:row             controllers.GameWebController.toggleState(col:Int, row:Int)
+GET        /socket                            controllers.GameWebController.socket
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET        /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)
