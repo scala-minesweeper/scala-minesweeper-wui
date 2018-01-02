@@ -1,39 +1,31 @@
-import akka.actor.ActorSystem
-import controllers.{AsyncController, CountController}
+import akka.actor.{ActorPath, ActorRef, ActorSystem}
+import controllers.GameWebController
 import org.scalatestplus.play._
 import play.api.test.Helpers._
 import play.api.test.FakeRequest
+import services.{ActorResolver, WebSocketActorFactory}
 
-/**
- * Unit tests can run without a full Play application.
- */
 class UnitSpec extends PlaySpec {
 
-  "CountController" should {
+  "GameWebController" should {
 
     "return a valid result with action" in {
-      val controller = new CountController(stubControllerComponents(), () => 49)
-      val result = controller.count(FakeRequest())
-      contentAsString(result) must equal("49")
-    }
-  }
-
-  "AsyncController" should {
-
-    "return a valid result on action.async" in {
-      // actor system will create threads that must be cleaned up even if test fails
-      val actorSystem = ActorSystem("test")
+      val publisherActor:ActorRef = ActorRef.noSender
+      val gameActor:ActorRef = ActorRef.noSender
+      implicit val actorSystem: ActorSystem = ActorSystem("test")
+      val actorResolverStub = new ActorResolver() {
+        override def resolvePublisher(): ActorRef = publisherActor
+        override def resolveGameController(): ActorRef = gameActor
+      }
       try {
-        implicit val ec = actorSystem.dispatcher
-        val controller = new AsyncController(stubControllerComponents(), actorSystem)
-        val resultFuture = controller.message(FakeRequest())
-        contentAsString(resultFuture) must be("Hi!")
+        val controller = new GameWebController(actorResolverStub, new WebSocketActorFactory(), stubControllerComponents())
+        val result = controller.game(FakeRequest())
+        contentAsString(result) must contain("Minesweeper Game")
       } finally {
         // always shut down actor system at the end of the test.
         actorSystem.terminate()
       }
     }
-
   }
 
 }
