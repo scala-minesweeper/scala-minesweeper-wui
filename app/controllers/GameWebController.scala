@@ -4,6 +4,7 @@ import javax.inject.{Inject, Singleton}
 
 import akka.actor.{ActorRef, ActorSelection, ActorSystem}
 import akka.stream.Materializer
+import com.typesafe.config.ConfigFactory
 import de.htwg.mps.minesweeper.controller._
 import play.api.libs.json.JsValue
 import play.api.libs.streams.ActorFlow
@@ -16,10 +17,14 @@ import scala.concurrent.duration._
 class GameWebController @Inject()(implicit actorSystem: ActorSystem, cc: ControllerComponents, materializer: Materializer)
   extends AbstractController(cc) {
 
+  private val config = ConfigFactory.load()
+  private val controllerActorName = config.getString("akka.minesweeper.controllerActor")
+  private val publisherActorName = config.getString("akka.minesweeper.publisherActor")
+
   private val publishController: ActorSelection =
-    actorSystem.actorSelection("akka.tcp://minesweeper@127.0.0.1:5555/user/publisher")
+    actorSystem.actorSelection(publisherActorName)
   private val gameController: ActorSelection =
-    actorSystem.actorSelection("akka.tcp://minesweeper@127.0.0.1:5555/user/controller")
+    actorSystem.actorSelection(controllerActorName)
 
   def socket: WebSocket = WebSocket.accept[JsValue, JsValue] { _ =>
     val publisherActor: ActorRef = Await.result(publishController.resolveOne(5.seconds), 5.seconds)
