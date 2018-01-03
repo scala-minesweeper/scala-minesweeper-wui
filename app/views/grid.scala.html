@@ -1,31 +1,32 @@
-@import de.htwg.mps.minesweeper.model.grid.Grid
-@(grid: Grid)
-@size = @{grid.getSize}
+@import de.htwg.mps.minesweeper.api.events.GridModel
+@(grid: GridModel)
+@size = @{grid.size}
+@missingBombs = @{grid.missingBombs}
 
-<p>Bombs to be found: @grid.missingBombs</p>
+<p>Bombs to be found: @missingBombs</p>
 <div class="game-container">
     <div class="game">
-    @for(col <- 0 until size._1) {
+    @for(row <- 0 until size._1) {
         <div class="grid-row">
-        @for(row <- 0 until size._2) {
-            @grid.get(col, row).get.toString() match {
+        @for(col <- 0 until size._2) {
+            @grid.fields(row)(col).value match {
                 case "~" => {
-                    <div id="@col|@row" class="grid-field hidden">&nbsp;</div>
+                    <div id="@row|@col" class="grid-field hidden">&nbsp;</div>
                 }
                 case "+" => {
-                    <div id="@col|@row" class="grid-field"><img src="@routes.Assets.versioned("images/mine.ico")"/></div>
+                    <div id="@row|@col" class="grid-field"><img src="@routes.Assets.versioned("images/mine.ico")"/></div>
                 }
                 case "?" => {
-                    <div id="@col|@row" class="grid-field hidden"><img src="@routes.Assets.versioned("images/questionmark.png")"/></div>
+                    <div id="@row|@col" class="grid-field hidden"><img src="@routes.Assets.versioned("images/questionmark.png")"/></div>
                 }
                 case "#" => {
-                    <div id="@col|@row" class="grid-field hidden"><img src="@routes.Assets.versioned("images/flag.ico")"/></div>
+                    <div id="@row|@col" class="grid-field hidden"><img src="@routes.Assets.versioned("images/flag.ico")"/></div>
                 }
                 case "0" => {
-                    <div id="@col|@row" class="grid-field">&nbsp;</div>
+                    <div id="@row|@col" class="grid-field">&nbsp;</div>
                 }
-                case _ => {
-                    <div id="@col|@row" class="grid-field">@grid.get(col, row)</div>
+                case g => {
+                    <div id="@row|@col" class="grid-field">@g</div>
                 }
             }
         }

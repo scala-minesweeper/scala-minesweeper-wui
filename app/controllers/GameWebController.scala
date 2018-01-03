@@ -3,7 +3,7 @@ package controllers
 import javax.inject.{Inject, Singleton}
 
 import akka.actor.ActorRef
-import de.htwg.mps.minesweeper.controller._
+import de.htwg.mps.minesweeper.api.events._
 import play.api.mvc._
 import services.{ActorResolver, WebSocketActorFactory}
 
