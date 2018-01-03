@@ -39,7 +39,7 @@ $(function () {
         playerTable.empty();
         $.each(event.value.history, function (index, value) {
             $('<tr>')
-                .append($("<td>").text(" " + (value.win ? "win" : "lost")))
+                .append($("<td>").text(" " + (value.win ? "win" : "defeat")))
                 .append($("<td>").text(value.score))
                 .appendTo(playerTable);
         });
