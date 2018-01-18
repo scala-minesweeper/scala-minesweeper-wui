@@ -3,6 +3,7 @@ package controllers
 import akka.actor.{Actor, ActorRef, Props}
 import de.htwg.mps.minesweeper.api.{Game, GameResult, Player}
 import de.htwg.mps.minesweeper.api.events._
+import play.api.Logger
 import play.api.libs.json._
 
 object WebSocketActor {
@@ -28,6 +29,8 @@ class WebSocketActor(webSocketOut: ActorRef, publisherActor: ActorRef, controlle
     case GameWon(g) => webSocketOut ! gameStatusEvent("GameWon", g)
     case GameLost(g) => webSocketOut ! gameStatusEvent("GameLost", g)
     case PlayerUpdate(p) => webSocketOut ! playerEvent("PlayerUpdate", p)
+
+    case t:JsValue => Logger.debug(t.toString)
   }
 
   private def gridEvent(name: String, grid: GridModel): JsValue =

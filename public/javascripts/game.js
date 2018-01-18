@@ -1,5 +1,15 @@
 $(function () {
     var socket = new WebSocket("ws://localhost:9000/socket");
+
+    socket.onopen = function() {
+        // Send a ping message to avoid socket sleep after timeout.
+        setInterval(function() {
+            socket.send(JSON.stringify({
+                "name": "ping"
+            }))
+        }, 60000);
+    };
+
     socket.onmessage = function (event) {
         handleEvent(JSON.parse(event.data));
     };
