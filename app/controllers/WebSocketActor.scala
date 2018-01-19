@@ -30,7 +30,7 @@ class WebSocketActor(webSocketOut: ActorRef, publisherActor: ActorRef, controlle
     case GameLost(g) => webSocketOut ! gameStatusEvent("GameLost", g)
     case PlayerUpdate(p) => webSocketOut ! playerEvent("PlayerUpdate", p)
 
-    case t:JsValue => Logger.debug(t.toString)
+    case t:JsValue => Logger.trace(t.toString)
   }
 
   private def gridEvent(name: String, grid: GridModel): JsValue =
