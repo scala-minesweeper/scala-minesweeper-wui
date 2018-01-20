@@ -17,6 +17,8 @@ class WebSocketActor(webSocketOut: ActorRef, publisherActor: ActorRef, controlle
 
   override def postStop(): Unit = publisherActor ! DeregisterObserver
 
+  sys.addShutdownHook(postStop())
+
   case class WebSocketEvent[T](name: String, body: T)
 
   override def receive: Receive = {

@@ -7,7 +7,7 @@ $(function () {
             socket.send(JSON.stringify({
                 "name": "ping"
             }))
-        }, 60000);
+        }, 10000);
     };
 
     socket.onmessage = function (event) {
