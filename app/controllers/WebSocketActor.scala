@@ -1,7 +1,7 @@
 package controllers
 
 import akka.actor.{Actor, ActorRef, Props}
-import de.htwg.mps.minesweeper.api.{Game, GameResult, Player}
+import de.htwg.mps.minesweeper.api.GameResult
 import de.htwg.mps.minesweeper.api.events._
 import play.api.Logger
 import play.api.libs.json._
@@ -13,13 +13,15 @@ object WebSocketActor {
 
 class WebSocketActor(webSocketOut: ActorRef, publisherActor: ActorRef, controllerActor: ActorRef) extends Actor {
 
-  publisherActor ! RegisterObserver
+  override def preStart(): Unit = publisherActor ! RegisterObserver
+
+  override def postStop(): Unit = publisherActor ! DeregisterObserver
 
   case class WebSocketEvent[T](name: String, body: T)
 
   override def receive: Receive = {
     case FieldUpdate(_, _, _, g) => webSocketOut ! gridEvent("FieldUpdate", g)
-    case GridUpdate(g) =>  webSocketOut ! gridEvent("GridUpdate", g)
+    case GridUpdate(g) => webSocketOut ! gridEvent("GridUpdate", g)
     case GameStart(g) =>
       webSocketOut ! gameStatusEvent("GameStart", g)
       webSocketOut ! gridEvent("GridUpdate", g.grid)
@@ -30,7 +32,7 @@ class WebSocketActor(webSocketOut: ActorRef, publisherActor: ActorRef, controlle
     case GameLost(g) => webSocketOut ! gameStatusEvent("GameLost", g)
     case PlayerUpdate(p) => webSocketOut ! playerEvent("PlayerUpdate", p)
 
-    case t:JsValue => Logger.trace(t.toString)
+    case t: JsValue => Logger.trace(t.toString)
   }
 
   private def gridEvent(name: String, grid: GridModel): JsValue =
@@ -62,8 +64,8 @@ class WebSocketActor(webSocketOut: ActorRef, publisherActor: ActorRef, controlle
 
   private implicit val jsonPlayer: Writes[PlayerModel] =
     (player: PlayerModel) => Json.obj(
-    "history" -> player.history
-  )
+      "history" -> player.history
+    )
 
   private implicit val jsonGame: Writes[GameModel] =
     (game: GameModel) => Json.obj(
@@ -73,12 +75,9 @@ class WebSocketActor(webSocketOut: ActorRef, publisherActor: ActorRef, controlle
 
   private implicit val jsonGameResult: Writes[GameResult] =
     (gameResult: GameResult) => Json.obj(
-    "score" -> gameResult.score,
-    "win" -> gameResult.win
-  )
+      "score" -> gameResult.score,
+      "win" -> gameResult.win
+    )
 
-  override def postStop(): Unit = {
-    publisherActor ! DeregisterObserver
-  }
 
 }
